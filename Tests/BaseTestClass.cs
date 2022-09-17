@@ -1,5 +1,7 @@
 ﻿using Framework.Selenium;
 using Pages;
+using Framework;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace Tests
 {
@@ -7,18 +9,25 @@ namespace Tests
     {
         protected HomePage homePage;
 
+        [OneTimeSetUp]
+        public void BeforeAll()
+        {
+            _framework.CreateTestResultDirectory();
+            _framework.SetLogger();
+        }
+
         [SetUp]
         public void Setup()
         {
-            Driver.Init();
-            Driver.CurrentDriver.Manage().Window.Maximize();
-            Driver.CurrentDriver.Url = "https://the-internet.herokuapp.com";
+            Driver.Init("chrome");
+            Driver.Goto("https://the-internet.herokuapp.com");
             homePage = new HomePage(Driver.CurrentDriver);
         }
 
         [TearDown]
         public void TearDown()
         {
+            _framework.Log.Info("Closing Browser\n__________________________________________________________");
             Driver.CurrentDriver.Quit();
         }
     }

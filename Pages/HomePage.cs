@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Framework;
+using OpenQA.Selenium;
 
 namespace Pages
 {
@@ -14,6 +15,7 @@ namespace Pages
 
         public FormAuthenticationPage goToFormAuthenticationPage()
         {
+            _framework.Log.Step("Going to the Form Authentication Page.");
             _driver.FindElement(FormAuthentication).Click();
             return new FormAuthenticationPage(_driver);
         }

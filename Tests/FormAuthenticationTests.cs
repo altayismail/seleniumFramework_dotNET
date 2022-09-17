@@ -17,6 +17,7 @@ namespace Tests
 
         [Test, Category("Form Authentication")]
         [TestCase("tomsmithh", "SuperSecretPassword!")]
+        [TestCase("", "SuperSecretPassword!")]
         public void InvalidUsername(string username, string password)
         {
             FormAuthenticationPage page = homePage.goToFormAuthenticationPage();
