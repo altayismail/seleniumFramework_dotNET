@@ -28,7 +28,6 @@ namespace Tests
         [TearDown]
         public void TearDown()
         {
-            _framework.Log.Info("Closing Browser\n__________________________________________________________");
             var outcome = TestContext.CurrentContext.Result.Outcome.Status;
 
             if (outcome == TestStatus.Passed)
@@ -39,9 +38,9 @@ namespace Tests
                 _framework.Log.Info("Outcome: Failed");
             }
             else
-                _framework.Log.Info("Outcome: " + outcome);
+                _framework.Log.Warning("Outcome: " + outcome);
 
-            Driver.CurrentDriver.Quit();
+            Driver.Quit();
         }
     }
 }

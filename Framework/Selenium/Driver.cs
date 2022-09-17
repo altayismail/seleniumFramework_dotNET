@@ -29,5 +29,11 @@ namespace Framework.Selenium
             var ssFileName = Path.Combine(_framework.CurrentTestDirectory.FullName, imageName);
             screenShot.SaveAsFile($"{ssFileName}.png", ScreenshotImageFormat.Png);
         }
+
+        public static void Quit()
+        {
+            _framework.Log.Info("Closing Browser\n__________________________________________________________");
+            CurrentDriver.Quit();
+        }
     }
 }
