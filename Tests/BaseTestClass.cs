@@ -1,7 +1,6 @@
 ﻿using Framework.Selenium;
 using Pages;
 using Framework;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace Tests
 {
@@ -12,6 +11,7 @@ namespace Tests
         [OneTimeSetUp]
         public void BeforeAll()
         {
+            _framework.SetConfig();
             _framework.CreateTestResultDirectory();
             _framework.SetLogger();
         }
@@ -19,8 +19,8 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            Driver.Init("chrome");
-            Driver.Goto("https://the-internet.herokuapp.com");
+            Driver.Init(_framework.Config.Driver.Browser);
+            Driver.Goto(_framework.Config.Test.URL);
             homePage = new HomePage(Driver.CurrentDriver);
         }
 
