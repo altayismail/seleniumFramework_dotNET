@@ -22,5 +22,12 @@ namespace Framework.Selenium
             _framework.Log.Info($"URL: {url}");
             _driver.Navigate().GoToUrl(url);
         }
+
+        public static void TakeScreenShot(string imageName)
+        {
+            var screenShot = ((ITakesScreenshot)(CurrentDriver)).GetScreenshot();
+            var ssFileName = Path.Combine(_framework.CurrentTestDirectory.FullName, imageName);
+            screenShot.SaveAsFile($"{ssFileName}.png", ScreenshotImageFormat.Png);
+        }
     }
 }

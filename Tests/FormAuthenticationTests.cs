@@ -12,6 +12,7 @@ namespace Tests
             page.fillUsername(username);
             page.fillPassword(password);
             page.clickLoginButton();
+            Assert.Fail();
             Assert.AreEqual("You logged into a secure area!\r\n×", page.getSuccessfulLoginAlert());
         }
 
