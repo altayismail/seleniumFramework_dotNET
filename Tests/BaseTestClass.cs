@@ -1,27 +1,25 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using Framework.Selenium;
 using Pages;
 
 namespace Tests
 {
     public class BaseTestClass
     {
-        IWebDriver _driver;
         protected HomePage homePage;
 
         [SetUp]
         public void Setup()
         {
-            _driver = new ChromeDriver();
-            _driver.Manage().Window.Maximize();
-            _driver.Url = "https://the-internet.herokuapp.com";
-            homePage = new HomePage(_driver);
+            Driver.Init();
+            Driver.CurrentDriver.Manage().Window.Maximize();
+            Driver.CurrentDriver.Url = "https://the-internet.herokuapp.com";
+            homePage = new HomePage(Driver.CurrentDriver);
         }
 
         [TearDown]
         public void TearDown()
         {
-            _driver.Quit();
+            Driver.CurrentDriver.Quit();
         }
     }
 }

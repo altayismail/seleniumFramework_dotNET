@@ -6,7 +6,6 @@ namespace Tests
     {
         [Test, Category("Form Authentication")]
         [TestCase("tomsmith", "SuperSecretPassword!")]
-        [Parallelizable(ParallelScope.Children)]
         public void SuccessfulLogin(string username, string password)
         {
             FormAuthenticationPage page = homePage.goToFormAuthenticationPage();
@@ -18,8 +17,6 @@ namespace Tests
 
         [Test, Category("Form Authentication")]
         [TestCase("tomsmithh", "SuperSecretPassword!")]
-        [TestCase("", "SuperSecretPassword!")]
-        [Parallelizable(ParallelScope.Children)]
         public void InvalidUsername(string username, string password)
         {
             FormAuthenticationPage page = homePage.goToFormAuthenticationPage();
@@ -31,7 +28,6 @@ namespace Tests
 
         [Test, Category("Form Authentication")]
         [TestCase("tomsmith", "SuperSecretPassword")]
-        [Parallelizable(ParallelScope.Children)]
         public void InvalidPassword(string username, string password)
         {
             FormAuthenticationPage page = homePage.goToFormAuthenticationPage();
