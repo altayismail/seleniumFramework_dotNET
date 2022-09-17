@@ -4,6 +4,7 @@
 - You can run cases with different data.
 - You can run cases for different clients.
 - You can get test result as a .txt file with very details.
+- You can get screenshots at success or fail.
 - You can add test cases easily.
 - You can develop the framework easily because it has a dynamic & readable architecture.
 ## Technologies
