@@ -31,7 +31,10 @@ namespace Tests
             var outcome = TestContext.CurrentContext.Result.Outcome.Status;
 
             if (outcome == TestStatus.Passed)
+            {
+                Driver.TakeScreenShot(TestContext.CurrentContext.Test.MethodName);
                 _framework.Log.Info("Outcome: Passed");
+            }
             else if (outcome == TestStatus.Failed)
             {
                 Driver.TakeScreenShot(TestContext.CurrentContext.Test.MethodName);
