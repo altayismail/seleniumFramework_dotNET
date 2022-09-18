@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Framework.Selenium
 {
@@ -6,14 +7,18 @@ namespace Framework.Selenium
     {
         [ThreadStatic]
         private static IWebDriver _driver;
+        [ThreadStatic]
+        private static WebDriverWait _wait;
 
         public static void Init(string browserName)
         {
             _driver = DriverFactory.setBrowser(browserName);
+            _wait = new WebDriverWait(CurrentDriver, TimeSpan.FromSeconds(10));
             _driver.Manage().Window.Maximize();
         }
 
         public static IWebDriver CurrentDriver => _driver ?? throw new NullReferenceException("Driver is null!!");
+        public static WebDriverWait CurrentWait => _wait ?? throw new NullReferenceException("WebDriverWait is null!!");
         public static void Goto(string url)
         {
             if (!url.StartsWith("https://"))

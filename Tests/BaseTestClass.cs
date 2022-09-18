@@ -22,7 +22,7 @@ namespace Tests
         {
             Driver.Init(_framework.Config.Driver.Browser);
             Driver.Goto(_framework.Config.Test.URL);
-            homePage = new HomePage(Driver.CurrentDriver);
+            homePage = new HomePage(Driver.CurrentDriver, Driver.CurrentWait);
         }
 
         [TearDown]

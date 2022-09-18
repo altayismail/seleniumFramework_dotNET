@@ -1,14 +1,17 @@
 ﻿using Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Pages
 {
     public class DynamicControlsPage
     {
         IWebDriver _driver;
-        public DynamicControlsPage(IWebDriver driver)
+        WebDriverWait _wait;
+        public DynamicControlsPage(IWebDriver driver, WebDriverWait wait)
         {
             _driver = driver;
+            _wait = wait;
         }
 
         private By CheckBox = By.CssSelector("#checkbox");
@@ -21,6 +24,7 @@ namespace Pages
         {
             _framework.Log.Step("Clicking Remove Button");
             _driver.FindElement(RemoveButton).Click();
+            _wait.Until(el => el.FindElement(ItIsGoneMessage));
         }
 
         public string getItIsGoneMessage()
@@ -39,6 +43,7 @@ namespace Pages
         {
             _framework.Log.Step("Clicking Add Button");
             _driver.FindElement(AddButton).Click();
+            _wait.Until(el => el.FindElement(ItIsBack));
         }
     }
 }

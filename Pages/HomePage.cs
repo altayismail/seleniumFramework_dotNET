@@ -1,14 +1,17 @@
 ﻿using Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Pages
 {
     public class HomePage
     {
         IWebDriver _driver;
-        public HomePage(IWebDriver driver)
+        WebDriverWait _wait;
+        public HomePage(IWebDriver driver, WebDriverWait wait)
         {
             _driver = driver;       
+            _wait = wait;
         }
 
         private By FormAuthentication = By.LinkText("Form Authentication");
@@ -25,7 +28,7 @@ namespace Pages
         {
             _framework.Log.Step("Going to the Dynamic Controls Page");
             _driver.FindElement(DynamicControls).Click();
-            return new DynamicControlsPage(_driver);
+            return new DynamicControlsPage(_driver, _wait);
         }
     }
 }
